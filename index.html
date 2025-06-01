@@ -1,0 +1,958 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Vista | Premium Italian Cuisine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        /* === BASE STYLES === */
+        :root {
+            --ivory: #FFFFF0;
+            --frosted: #F8F8FF;
+            --burgundy: #800020;
+            --bronze: #CD7F32;
+            --crimson: #DC143C;
+            --gold: #FFD700;
+            --amber: #FF8C00;
+            --shadow: rgba(31, 38, 135, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #333;
+            background: var(--ivory);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background: var(--bronze);
+            margin: 0.5rem auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--burgundy);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        .btn:hover {
+            background: var(--bronze);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* === GLASSMORPHISM EFFECT === */
+        .glass {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px var(--shadow);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        /* === HERO SECTION WITH PARALLAX AND LEAVES === */
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://source.unsplash.com/1920x1080/?luxury-italian-restaurant-interior') center/cover no-repeat fixed;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* === MAPLE LEAVES ANIMATION === */
+        .leaves-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .leaf {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+            will-change: transform;
+            top: -100px;
+            z-index: 1;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
+        }
+
+        .leaf.crimson {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23DC143C" d="M50 15 Q60 5 70 15 Q80 30 85 40 Q95 50 85 60 Q80 70 70 85 Q60 95 50 85 Q40 95 30 85 Q20 70 15 60 Q5 50 15 40 Q20 30 30 15 Q40 5 50 15 Z"/></svg>');
+        }
+
+        .leaf.gold {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FFD700" d="M50 15 Q60 5 70 15 Q80 30 85 40 Q95 50 85 60 Q80 70 70 85 Q60 95 50 85 Q40 95 30 85 Q20 70 15 60 Q5 50 15 40 Q20 30 30 15 Q40 5 50 15 Z"/></svg>');
+        }
+
+        .leaf.amber {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="%23FF8C00" d="M50 15 Q60 5 70 15 Q80 30 85 40 Q95 50 85 60 Q80 70 70 85 Q60 95 50 85 Q40 95 30 85 Q20 70 15 60 Q5 50 15 40 Q20 30 30 15 Q40 5 50 15 Z"/></svg>');
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* === ABOUT SECTION === */
+        .about {
+            background: var(--frosted);
+            text-align: center;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        /* === MENU SECTION === */
+        .menu {
+            background: linear-gradient(rgba(248, 248, 255, 0.9), rgba(248, 248, 255, 0.9)), 
+                        url('https://source.unsplash.com/1920x1080/?italian-restaurant-background') center/cover;
+        }
+
+        .category-nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-btn {
+            padding: 0.8rem 1.5rem;
+            margin: 0.5rem;
+            background: transparent;
+            border: 2px solid var(--burgundy);
+            color: var(--burgundy);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background: var(--burgundy);
+            color: white;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-img {
+            height: 200px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-info {
+            padding: 1.5rem;
+        }
+
+        .menu-info h3 {
+            color: var(--burgundy);
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .price {
+            color: var(--bronze);
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        /* === WINE SECTION === */
+        .wine {
+            background: var(--burgundy);
+            color: white;
+        }
+
+        .wine .section-title h2 {
+            color: white;
+        }
+
+        .wine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .wine-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .wine-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .wine-img {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .wine-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .wine-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .wine-info p {
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        /* === GALLERY SECTION === */
+        .gallery {
+            background: var(--frosted);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* === CONTACT SECTION === */
+        .contact {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://source.unsplash.com/1920x1080/?restaurant-evening') center/cover;
+            color: white;
+            text-align: center;
+        }
+
+        .contact .section-title h2 {
+            color: white;
+        }
+
+        .contact-info {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .whatsapp-btn, .telegram-btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .telegram-btn {
+            background: #0088CC;
+        }
+
+        .whatsapp-btn:hover, .telegram-btn:hover {
+            transform: scale(1.05);
+        }
+
+        .map {
+            height: 300px;
+            background: url('https://source.unsplash.com/1200x600/?restaurant-map') center/cover;
+            border-radius: 15px;
+            margin: 2rem auto;
+            max-width: 800px;
+            border: 2px solid var(--bronze);
+        }
+
+        .social-icons {
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--burgundy);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            background: var(--bronze);
+            color: white;
+        }
+
+        /* === FOOTER === */
+        footer {
+            background: var(--burgundy);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* === MODAL STYLES === */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.open .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-img {
+            height: 400px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .modal-info {
+            padding: 2rem;
+        }
+
+        .modal-info h3 {
+            color: var(--burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: var(--burgundy);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            z-index: 10;
+        }
+
+        /* === RESPONSIVE DESIGN === */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .menu-grid, .wine-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .leaf {
+                width: 50px;
+                height: 50px;
+            }
+        }
+
+        /* Reduced motion accessibility */
+        @media (prefers-reduced-motion) {
+            .leaf {
+                animation: none !important;
+            }
+            
+            .menu-item:hover, .wine-card:hover, .gallery-item:hover img {
+                transform: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section with Parallax and Leaves -->
+    <header class="hero">
+        <div class="leaves-container" id="leavesContainer"></div>
+        <div class="hero-content">
+            <h1>Bella Vista</h1>
+            <p>Authentic Italian Cuisine & Premium Wine Experience</p>
+            <a href="#reservation" class="btn">Reserve Your Table</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Story</h2>
+                <p>Crafting authentic Italian experiences since 1995</p>
+            </div>
+            <div class="about-content glass">
+                <p>Nestled in the heart of the city, Bella Vista brings the true essence of Italian culinary artistry to your table. Our chefs, trained in the finest kitchens of Tuscany and Sicily, create masterpieces using only the freshest ingredients imported directly from Italy.</p>
+                <p>At Bella Vista, we believe that dining is not just about food, but about creating unforgettable experiences. From our hand-crafted pasta to our extensive wine cellar featuring over 300 premium Italian wines, every detail is designed to transport you to the sun-drenched hills of Italy.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <div class="section-title">
+                <h2>Culinary Excellence</h2>
+                <p>Discover our authentic Italian specialties</p>
+            </div>
+            
+            <div class="category-nav">
+                <button class="category-btn active">Antipasti</button>
+                <button class="category-btn">Primi</button>
+                <button class="category-btn">Secondi</button>
+                <button class="category-btn">Dolci</button>
+            </div>
+            
+            <div class="menu-grid">
+                <!-- Antipasti -->
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-bruschetta')"></div>
+                    <div class="menu-info">
+                        <h3>Bruschetta Classica</h3>
+                        <p>Toasted bread topped with fresh tomatoes, basil, garlic, and extra virgin olive oil</p>
+                        <div class="price">$14</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-calamari')"></div>
+                    <div class="menu-info">
+                        <h3>Calamari Fritti</h3>
+                        <p>Crispy fried calamari served with lemon aioli and spicy marinara</p>
+                        <div class="price">$18</div>
+                    </div>
+                </div>
+                
+                <!-- Primi -->
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-pasta')"></div>
+                    <div class="menu-info">
+                        <h3>Truffle Tagliatelle</h3>
+                        <p>Handmade tagliatelle with black truffle, porcini mushrooms, and Parmigiano Reggiano</p>
+                        <div class="price">$26</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-risotto')"></div>
+                    <div class="menu-info">
+                        <h3>Risotto ai Frutti di Mare</h3>
+                        <p>Creamy saffron risotto with fresh seafood and lemon zest</p>
+                        <div class="price">$28</div>
+                    </div>
+                </div>
+                
+                <!-- Secondi -->
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-ossobuco')"></div>
+                    <div class="menu-info">
+                        <h3>Ossobuco alla Milanese</h3>
+                        <p>Braised veal shanks with gremolata and creamy saffron risotto</p>
+                        <div class="price">$38</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-seabass')"></div>
+                    <div class="menu-info">
+                        <h3>Branzino al Forno</h3>
+                        <p>Mediterranean sea bass baked with herbs, lemon, and seasonal vegetables</p>
+                        <div class="price">$36</div>
+                    </div>
+                </div>
+                
+                <!-- Dolci -->
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-tiramisu')"></div>
+                    <div class="menu-info">
+                        <h3>Tiramisu Classico</h3>
+                        <p>Traditional Italian dessert with espresso-soaked ladyfingers and mascarpone cream</p>
+                        <div class="price">$12</div>
+                    </div>
+                </div>
+                
+                <div class="menu-item">
+                    <div class="menu-img" style="background-image: url('https://source.unsplash.com/600x400/?gourmet-panna-cotta')"></div>
+                    <div class="menu-info">
+                        <h3>Panna Cotta ai Frutti di Bosco</h3>
+                        <p>Vanilla bean panna cotta with fresh berry compote</p>
+                        <div class="price">$11</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine Section -->
+    <section class="wine" id="wine">
+        <div class="container">
+            <div class="section-title">
+                <h2>Vineyard Selection</h2>
+                <p>Curated Italian wines for the perfect pairing</p>
+            </div>
+            
+            <div class="wine-grid">
+                <div class="wine-card">
+                    <div class="wine-img" style="background-image: url('https://source.unsplash.com/400x600/?premium-italian-wine')"></div>
+                    <div class="wine-info">
+                        <h3>Barolo Riserva</h3>
+                        <p>Piedmont, Italy - 2015</p>
+                        <p>Elegant with notes of cherry, rose and truffle</p>
+                        <div class="price">$145</div>
+                    </div>
+                </div>
+                
+                <div class="wine-card">
+                    <div class="wine-img" style="background-image: url('https://source.unsplash.com/400x600/?premium-tuscan-wine')"></div>
+                    <div class="wine-info">
+                        <h3>Brunello di Montalcino</h3>
+                        <p>Tuscany, Italy - 2016</p>
+                        <p>Full-bodied with flavors of plum, leather and spice</p>
+                        <div class="price">$125</div>
+                    </div>
+                </div>
+                
+                <div class="wine-card">
+                    <div class="wine-img" style="background-image: url('https://source.unsplash.com/400x600/?premium-italian-white-wine')"></div>
+                    <div class="wine-info">
+                        <h3>Gavi di Gavi</h3>
+                        <p>Piedmont, Italy - 2020</p>
+                        <p>Crisp and mineral-driven with citrus and almond notes</p>
+                        <div class="price">$85</div>
+                    </div>
+                </div>
+                
+                <div class="wine-card">
+                    <div class="wine-img" style="background-image: url('https://source.unsplash.com/400x600/?premium-italian-sparkling-wine')"></div>
+                    <div class="wine-info">
+                        <h3>Franciacorta Brut</h3>
+                        <p>Lombardy, Italy - 2018</p>
+                        <p>Fine bubbles with apple, brioche and hazelnut aromas</p>
+                        <div class="price">$95</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Gallery</h2>
+                <p>Experience the Bella Vista atmosphere</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?luxury-restaurant-interior" alt="Restaurant Interior">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?italian-chef-cooking" alt="Chef Cooking">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?gourmet-italian-dish" alt="Italian Dish">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?fine-dining-presentation" alt="Fine Dining">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?wine-cellar" alt="Wine Cellar">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://source.unsplash.com/600x400/?restaurant-terrace" alt="Restaurant Terrace">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Reserve Your Table</h2>
+                <p>Experience the finest Italian dining</p>
+            </div>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 123 Via Roma, Milano District</p>
+                <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                <p><i class="fas fa-clock"></i> Open Tuesday-Sunday: 5:00 PM - 11:00 PM</p>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://wa.me/+79119396075" class="whatsapp-btn">
+                    <i class="fab fa-whatsapp"></i> WhatsApp Reservation
+                </a>
+                <a href="https://t.me/ramashery" class="telegram-btn">
+                    <i class="fab fa-telegram"></i> Telegram Reservation
+                </a>
+            </div>
+            
+            <div class="map"></div>
+            
+            <div class="social-icons">
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Bella Vista Premium Italian Restaurant. All rights reserved.</p>
+            <p>Designed with passion for authentic Italian cuisine</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Menu Items -->
+    <div class="modal" id="itemModal">
+        <div class="modal-content">
+            <div class="close-btn">&times;</div>
+            <div class="modal-img" id="modalImage"></div>
+            <div class="modal-info">
+                <h3 id="modalTitle"></h3>
+                <p id="modalDescription"></p>
+                <div class="price" id="modalPrice"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create Maple Leaves Animation
+        function createLeaves() {
+            const container = document.getElementById('leavesContainer');
+            const leafCount = window.innerWidth < 768 ? 10 : 25; // Reduce on mobile
+            
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                
+                // Randomize leaf type
+                const types = ['crimson', 'gold', 'amber'];
+                const randomType = types[Math.floor(Math.random() * types.length)];
+                leaf.classList.add(randomType);
+                
+                // Randomize position
+                const leftPos = Math.random() * 100;
+                leaf.style.left = `${leftPos}%`;
+                
+                // Randomize size
+                const size = 50 + Math.random() * 30;
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+                
+                // Randomize animation
+                const duration = 25 + Math.random() * 15;
+                const delay = Math.random() * 15;
+                const rotation = (Math.random() * 20) - 10;
+                const xMovement = (Math.random() * 200) - 100;
+                
+                leaf.style.animation = `fall ${duration}s cubic-bezier(0.2,0.1,0.2,1) ${delay}s infinite`;
+                leaf.style.transform = `rotate(${rotation}deg) translateX(${xMovement}px)`;
+                
+                container.appendChild(leaf);
+            }
+        }
+
+        // Modal functionality
+        function setupModals() {
+            const modal = document.getElementById('itemModal');
+            const closeBtn = document.querySelector('.close-btn');
+            const menuItems = document.querySelectorAll('.menu-item');
+            
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('open');
+            });
+            
+            menuItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    const img = item.querySelector('.menu-img').style.backgroundImage;
+                    const title = item.querySelector('h3').textContent;
+                    const description = item.querySelector('p').textContent;
+                    const price = item.querySelector('.price').textContent;
+                    
+                    document.getElementById('modalImage').style.backgroundImage = img;
+                    document.getElementById('modalTitle').textContent = title;
+                    document.getElementById('modalDescription').textContent = description;
+                    document.getElementById('modalPrice').textContent = price;
+                    
+                    modal.classList.add('open');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('open');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Smooth scrolling for navigation
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        window.scrollTo({
+                            top: target.offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            createLeaves();
+            setupModals();
+            setupSmoothScrolling();
+            
+            // Category navigation
+            const categoryBtns = document.querySelectorAll('.category-btn');
+            categoryBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    categoryBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+            });
+        });
+
+        // Handle modal closing
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('itemModal');
+            if (e.key === 'Escape' && modal.classList.contains('open')) {
+                modal.classList.remove('open');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
+</body>
+</html>
